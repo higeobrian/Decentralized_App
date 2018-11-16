@@ -6,10 +6,12 @@ class Blockchain {
     }
 
     addBlock(data) {
-        const lastBlock = this.chain[this.chain.length-1]; //represents last block
-        const block = Block.mineBlock(lastBlock, data);
+        //represents last block
+        const block = Block.mineBlock(this.chain[this.chain.length-1], data);
         this.chain.push(block);
 
         return block;
     }
 }
+
+module.exports = Blockchain;
