@@ -14,7 +14,7 @@ class Blockchain {
     }
 
     isValidChain(chain){
-        if(JSON.stringify(chain[0] !== JSON.stringify(Block.genesis()))) return false;
+        if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) return false;
 
         for(let i=1; i<chain.length; i++) {
             const block = chain[i];
@@ -24,6 +24,15 @@ class Blockchain {
                 block.hash !== Bloock.blackHash(block)) {
                 return false;
             }
+        }
+
+        return true;
+    }
+
+    replaceChain(newChain) {
+        if(newChain.length <= this.chain.length) {
+            console.log('Recieved chain is not longer than th e current chain.');
+            return;
         }
     }
 }
