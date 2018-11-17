@@ -28,12 +28,21 @@ describe('Blockchain', () => {
 
     it('invalidates a chain with a corrupt genesis block', () => {
         bc2.chain[0].data = 'Bad data';
+
         expect(bc.isValidChain(bc2.chain)).toBe(false);
     });
-    
+
     it('invalidates a corrupt chain', () => {
         bc2.addBlock('foo');
         bc2.chain[i].data = 'Not foo';
+
         expect(bc.isValidChain(bc2.chain)).toBe(false);
+    });
+
+    it('replaces the chain with a valid chain', () => {
+        bc2.addBlock('goo');
+        bc.replaceChain(bc2.chain);
+
+        expect(bc.chain).toEqual(bc2.chain);
     });
 });
