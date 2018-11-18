@@ -1,4 +1,4 @@
-const Blockchain = require('./blockchain');
+const Blockchain = require('./index');
 const Block = require('./block');
 
 describe('Blockchain', () => {
@@ -10,6 +10,7 @@ describe('Blockchain', () => {
     });
 
     it('starts with the genesis block', () => {
+
         expect(bc.chain[0]).toEqual(Block.genesis());
     });
 
@@ -44,5 +45,12 @@ describe('Blockchain', () => {
         bc.replaceChain(bc2.chain);
 
         expect(bc.chain).toEqual(bc2.chain);
+    });
+
+    it('does not replace the chain with one or less than or equal to length', () => {
+        bc.addBlock('foo');
+        bc.replaceChain(bc2.chain);
+
+        expect(bc.chain).not.toEqual(bc2.chain);
     });
 });
