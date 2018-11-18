@@ -35,7 +35,7 @@ describe('Blockchain', () => {
 
     it('invalidates a corrupt chain', () => {
         bc2.addBlock('foo');
-        bc2.chain[i].data = 'Not foo';
+        bc2.chain[1].data = 'Not foo';
 
         expect(bc.isValidChain(bc2.chain)).toBe(false);
     });
